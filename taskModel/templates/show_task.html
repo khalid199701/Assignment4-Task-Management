@@ -1,0 +1,22 @@
+{% extends "base.html" %}
+{% block content %}
+    <div class="d-flex flex-wrap justify-content-center px-5 pt-5">
+    {% for i in data %}
+        
+            <div class="card col-sm-3 m-3" style="width: 300px;">
+                <div class="card-body">
+                <h5 class="card-title">{{i.taskTitle}}</h5>
+                <p class="card-text">{{i.taskDescription}}</p>
+                <p class="card-text">Is completed: {{i.is_completed}}</p>
+                {% if i.is_completed == False%}
+                    <a href="{% url 'edit_task' i.pk %}" class="btn btn-warning">Edit</a>
+                {% else %}
+                    <a href="#" class="btn btn-light" disabled>Completed</a>
+                {% endif %}
+                <a href="{% url 'delete_task' i.pk %}" class="btn btn-danger">Delete</a>
+                </div>
+            </div>
+        
+    {% endfor %}
+    </div>
+{% endblock content %}
